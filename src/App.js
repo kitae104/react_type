@@ -1,29 +1,38 @@
+import { useState } from "react";
 import "./App.css";
-import TodoRowItem from "./components/TodoRowItem";
+import TodoTable from "./components/TodoTable";
+import NewTodoForm from "./components/NewTodoForm";
 
 function App() {
+
+  const [todos, setTodos] = useState([
+    { rowNumber: 1, rowDescription: "Feed dog", rowAssigned: "User One" },
+    { rowNumber: 2, rowDescription: "Water plants", rowAssigned: "User Two" },
+    { rowNumber: 3, rowDescription: "Make dinner", rowAssigned: "User One" },
+    { rowNumber: 4, rowDescription: "Change phone battery", rowAssigned: "User One"},
+  ]);
+
+  
+
+  const addTodo = () => {
+    if(todos.length > 0) {
+      const newTodo = {
+        rowNumber: todos.length + 1,
+        rowDescription: "New Todo",
+        rowAssigned: "User Three"
+      };      
+      setTodos(todos => [...todos, newTodo]);      
+    }
+  }
+
   return (
     <div className="mt-5 container">
       <div className="card">
         <div className="card-header">Your Todo's</div>
         <div className="card-body">
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Description</th>
-                <th scope="col">Assigned</th>
-              </tr>
-            </thead>
-            <tbody>
-              <TodoRowItem />
-              <tr>
-                <th scope="row">2</th>
-                <td>Get haircut</td>
-                <td>Eric</td>
-              </tr>
-            </tbody>
-          </table>
+          <TodoTable todos={todos} />
+          <button className="btn btn-primary" onClick={addTodo}>Add new todo</button>
+          <NewTodoForm />
         </div>
       </div>
     </div>
