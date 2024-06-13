@@ -1,7 +1,7 @@
 import React from "react";
 import TodoRowItem from "./TodoRowItem";
 
-const TodoTable = ({todos}) => { 
+const TodoTable = ({todos, deleteTodo}) => { 
   
 
   return (
@@ -21,6 +21,7 @@ const TodoTable = ({todos}) => {
               rowNumber={todo.rowNumber}
               rowDescription={todo.rowDescription}
               rowAssigned={todo.rowAssigned}
+              deleteTodo={deleteTodo}
             />
           );
         })}

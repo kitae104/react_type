@@ -1,9 +1,9 @@
 import React from "react";
 
-const TodoRowItem = ({rowNumber, rowDescription, rowAssigned}) => { 
+const TodoRowItem = ({rowNumber, rowDescription, rowAssigned, deleteTodo}) => { 
 
   return (
-    <tr>
+    <tr onClick={() => deleteTodo(rowNumber)}>
       <th scope="row">{rowNumber}</th>
       <td>{rowDescription}</td>
       <td>{rowAssigned}</td>
